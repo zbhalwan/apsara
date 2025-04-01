@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apsara Asian Restaurant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        background-color: #e3d000;
+        font-family: "Gotham", sans-serif;
+        letter-spacing: 0.05em;
+      }
+      .content {
+        flex: 1;
+      }
+      .nav-links a {
+        color: #f0e12f;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+        font-size: 18px;
+      }
+      .nav-links a:hover {
+        color: #ffffff;
+      }
+
+      .slideshow-container {
+        position: relative;
+        width: 100%;
+        max-height: 400px;
+        overflow: hidden;
+      }
+      .slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+      .slide.active {
+        opacity: 1;
+      }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="text-gray-800">
+    <!-- Navigation Bar -->
+    <style>
+      #menu-btn {
+        display: none;
+      }
+
+      @media (max-width: 805px) {
+        #nav-links {
+          display: none;
+        }
+        #menu-btn {
+          display: block;
+          position: relative;
+          z-index: 1100;
+        }
+      }
+
+      /* Full-screen dropdown menu styles */
+      #mobile-menu {
+        position: fixed;
+        top: -100%; /* Start off-screen */
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #81140d;
+        color: #f0e12f;
+        padding: 80px 30px;
+        z-index: 1000;
+        overflow-y: auto;
+      }
+
+      #mobile-menu a {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 50px;
+        text-decoration: none;
+        color: #f0e12f;
+        transition: color 0.3s ease;
+      }
+
+      #mobile-menu a:hover {
+        color: #ffffff;
+      }
+
+      #menu-btn img {
+        transition: filter 0.5s ease;
+      }
+
+      #menu-btn img:hover {
+        filter: brightness(0) invert(1);
+      }
+    </style>
+
+    <nav class="p-6 bg-[#81140d]">
+      <div class="container mx-auto flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <a href="index.html" aria-label="Go back to restaraunt homepage.">
+            <img
+              src="assets/apsara_logo.png"
+              alt="Apsara Asian Restaraunt Logo"
+              class="h-20 sm:h-16 md:h-20"
+            />
+          </a>
+        </div>
+
+        <!-- Hamburger Menu for Mobile -->
+        <button
+          id="menu-btn"
+          class="text-white"
+          aria-label="Open the dropdown menu."
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <img
+            src="assets/menu.png"
+            alt="open dropdown menu icon"
+            class="h-8"
+          />
+        </button>
+
+        <!-- Links -->
+        <ul
+          id="nav-links"
+          class="nav-links flex space-x-4 md:space-x-8 lg:space-x-20"
+        >
+          <li>
+            <a href="#" class="hover:underline flex-1 text-center"
+              >ORDER ONLINE</a
+            >
+          </li>
+          <li>
+            <a href="#" class="hover:underline flex-1 text-center">MENU</a>
+          </li>
+          <li><a href="#" class="hover:underline text-center">STORY</a></li>
+          <li>
+            <a href="#" class="hover:underline text-center"
+              >HOURS AND LOCATION</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Mobile Dropdown Menu div -->
+      <div
+        id="mobile-menu"
+        role="menu"
+        aria-labelledby="menu-btn"
+        aria-hidden="true"
+      >
+        <div class="flex flex-col items-start w-full">
+          <a href="#">ORDER ONLINE</a>
+          <a href="#">MENU</a>
+          <a href="#">STORY</a>
+          <a href="#">HOURS AND LOCATION</a>
+        </div>
+
+        <hr style="width: 100%; border: 1px solid #f0e12f; margin: 30px 0" />
+
+        <div id="email-dropdown" class="flex justify-center my-12">
+          <button
+            style="
+              background: #e3d000;
+              color: #000;
+              font-family: 'Gotham', sans-serif;
+              font-style: normal;
+              font-size: 18px;
+              line-height: normal;
+              text-align: center;
+              padding: 10px 20px;
+              border: none;
+              border-radius: 20px;
+              box-shadow: 0px 4px 4px 4px #000;
+              cursor: pointer;
+              transition: all 0.3s ease;
+            "
+            onmouseover="this.style.background='white'; this.style.color='#81140d';"
+            onmouseout="this.style.background='#f0e12f'; this.style.color='black';"
+            class="active:scale-95"
+            aria-label="Button to sign up for our email list."
+          >
+            EMAIL SIGNUP
+          </button>
+        </div>
+
+        <div class="flex justify-center space-x-8">
+          <a href="#" class="group">
+            <img
+              src="assets/facebook_icon.png"
+              alt="Visit our Facebook page."
+              class="h-8 transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
+            />
+          </a>
+          <a href="#" class="group">
+            <img
+              src="assets/google_plus_icon.png"
+              alt="Visit our Google+ page."
+              class="h-8 transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
+            />
+          </a>
+          <a href="#" class="group">
+            <img
+              src="assets/yelp_icon.png"
+              alt="Visit our Yelp page."
+              class="h-8 transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
+            />
+          </a>
+          <a href="#" class="group">
+            <img
+              src="assets/tripadvisor_icon.png"
+              alt="Visit our TripAdvisor page."
+              class="h-8 transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
+            />
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- JavaScript for hamburger menu -->
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuLinks = mobileMenu.querySelectorAll("a, button");
+      let menuOpen = false;
+
+      mobileMenu.style.transition = "top 0.5s ease";
+
+      menuLinks.forEach((link) => {
+        link.setAttribute("tabindex", "-1");
+      });
+
+      function trapFocus(event) {
+        const focusableElements = Array.from(menuLinks);
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (event.key === "Tab") {
+          if (event.shiftKey) {
+            if (document.activeElement === firstElement) {
+              event.preventDefault();
+              lastElement.focus();
+            }
+          } else {
+            if (document.activeElement === lastElement) {
+              event.preventDefault();
+              menuBtn.focus();
+            }
+          }
+        }
+      }
+
+      function closeMenu() {
+        menuOpen = false;
+        mobileMenu.style.top = "-100%";
+        menuBtn.setAttribute("aria-expanded", "false");
+        mobileMenu.setAttribute("aria-hidden", "true");
+
+        menuLinks.forEach((link) => {
+          link.setAttribute("tabindex", "-1");
+        });
+
+        document.removeEventListener("keydown", trapFocus);
+        document.removeEventListener("keydown", handleEscapeKey);
+
+        menuBtn.innerHTML =
+          '<img src="assets/menu.png" alt="Open dropdown menu icon" class="h-8" />';
+        document.body.style.overflow = "";
+
+        menuBtn.focus();
+      }
+
+      function handleEscapeKey(event) {
+        if (event.key === "Escape") {
+          closeMenu();
+        }
+      }
+
+      menuBtn.addEventListener("click", () => {
+        menuOpen = !menuOpen;
+
+        if (menuOpen) {
+          mobileMenu.style.top = "0"; // Slide down
+          menuBtn.setAttribute("aria-expanded", "true");
+          mobileMenu.setAttribute("aria-hidden", "false");
+
+          menuLinks.forEach((link) => {
+            link.setAttribute("tabindex", "0");
+          });
+
+          document.addEventListener("keydown", trapFocus);
+          document.addEventListener("keydown", handleEscapeKey);
+
+          menuBtn.innerHTML =
+            '<img src="assets/close.png" alt="Close menu icon" class="h-8" />';
+          document.body.style.overflow = "hidden";
+
+          menuLinks[0].focus();
+        } else {
+          closeMenu();
+        }
+      });
+    </script>
+
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Slideshow -->
+
+      <div
+        id="default-carousel"
+        class="relative w-full"
+        data-carousel="slide"
+        tabindex="0"
+        aria-label="Slideshow of Apsara Asian Restaurant dishes."
+      >
+        <!-- Carousel wrapper -->
+        <div class="relative h-80 overflow-hidden md:h-[600px]">
+          <!-- Item 1 -->
+          <div
+            class="slide active duration-700 ease-in-out"
+            aria-hidden="false"
+            data-carousel-item
+          >
+            <img
+              src="assets/combo_platter.jpg"
+              class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
+              alt="Apsara Combo Platter Image"
+            />
+          </div>
+          <!-- Item 2 -->
+          <div class="slide duration-700 ease-in-out" data-carousel-item>
+            <img
+              src="assets/fried_rice.jpg"
+              class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
+              alt="Apsara Fried Rice Image"
+            />
+          </div>
+          <!-- Item 3 -->
+          <div class="slide duration-700 ease-in-out" data-carousel-item>
+            <img
+              src="assets/thai_food.jpg"
+              class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
+              alt="Apsara Thai Food Image"
+            />
+          </div>
+          <!-- Item 4 -->
+          <div class="slide duration-700 ease-in-out" data-carousel-item>
+            <img
+              src="assets/soup.jpg"
+              class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
+              alt="Apsara Soup Image"
+            />
+          </div>
+          <!-- Item 5 -->
+          <div class="slide duration-700 ease-in-out" data-carousel-item>
+            <img
+              src="assets/general_tso.jpg"
+              class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
+              alt="Apsara General Tso's Chicken Image"
+            />
+          </div>
+        </div>
+
+        <!-- Previous Button -->
+        <button
+          class="absolute top-1/2 left-4 transform -translate-y-1/2 rounded-full w-9 h-9 flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-2xl active:scale-90"
+          onclick="showPreviousSlide()"
+        >
+          <img src="assets/black_prev.png" alt="Previous" class="h-6 w-6" />
+        </button>
+
+        <!-- Next Button -->
+        <button
+          class="absolute top-1/2 right-4 transform -translate-y-1/2 rounded-full w-9 h-9 flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-2xl active:scale-90"
+          onclick="showNextSlide()"
+        >
+          <img src="assets/black_next.png" alt="Next" class="h-6 w-6" />
+        </button>
+
+        <!-- Play/Pause Button -->
+        <button
+          id="play-pause-button"
+          class="absolute bottom-5 left-1/2 transform -translate-x-1/2 shadow-lg transition-all duration-300 hover:shadow-2xl active:scale-90"
+          onclick="togglePlayPause()"
+        >
+          <img
+            id="play-pause-icon"
+            src="assets/black_pause.png"
+            alt="Pause"
+            class="h-6 w-6"
+          />
+        </button>
+      </div>
+
+      <script>
+        // JavaScript for Slideshow
+        let slides = document.querySelectorAll(".slide");
+        let currentIndex = 0;
+        let isPlaying = true;
+        let interval = setInterval(showNextSlide, 3500);
+
+        function showNextSlide() {
+          slides[currentIndex].classList.remove("active");
+          currentIndex = (currentIndex + 1) % slides.length;
+          slides[currentIndex].classList.add("active");
+        }
+
+        function showPreviousSlide() {
+          clearInterval(interval);
+          isPlaying = false;
+          updatePlayPauseIcon();
+          slides[currentIndex].classList.remove("active");
+          currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+          slides[currentIndex].classList.add("active");
+        }
+
+        function togglePlayPause() {
+          const playPauseIcon = document.getElementById("play-pause-icon");
+
+          if (isPlaying) {
+            clearInterval(interval); // Stop the slideshow
+            playPauseIcon.src = "assets/black_play.png"; // Change to Play icon
+            playPauseIcon.alt = "Play";
+          } else {
+            interval = setInterval(showNextSlide, 4000); // Resume the slideshow
+            playPauseIcon.src = "assets/black_pause.png"; // Change to Pause icon
+            playPauseIcon.alt = "Pause";
+          }
+          isPlaying = !isPlaying; // Toggle play/pause state
+        }
+
+        function updatePlayPauseIcon() {
+          const playPauseIcon = document.getElementById("play-pause-icon");
+          playPauseIcon.src = "assets/black_play.png";
+          playPauseIcon.alt = "Play";
+        }
+
+        // Pause the slideshow when the user clicks the Next button
+        document
+          .querySelector(".absolute.right-4")
+          .addEventListener("click", () => {
+            clearInterval(interval);
+            isPlaying = false;
+            updatePlayPauseIcon();
+          });
+
+        // Pause the slideshow when the user clicks the Previous button
+        document
+          .querySelector(".absolute.left-4")
+          .addEventListener("click", () => {
+            clearInterval(interval);
+            isPlaying = false;
+            updatePlayPauseIcon();
+          });
+      </script>
+      <style>
+        /* card styling */
+        .card {
+          border-radius: 0;
+        }
+
+        .card-top {
+          border-top-left-radius: 20px;
+          border-bottom-left-radius: 20px;
+        }
+
+        .card-bottom {
+          border-bottom-right-radius: 20px;
+          border-top-right-radius: 20px;
+        }
+
+        /* smaller screens cards */
+        @media (max-width: 768px) {
+          .card {
+            border-radius: 0;
+          }
+
+          .card-top {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+          }
+
+          .card-bottom {
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+          }
+        }
+      </style>
+
+      <!-- Two Cards Section 1 -->
+      <div class="flex justify-center my-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 w-3/4">
+          <!-- Text Card -->
+          <div
+            class="card card-top bg-white p-7 space-y-6 shadow-lg flex flex-col justify-center items-start"
+            style="
+              background-image: url('assets/stoneback.jpg');
+              background-size: cover;
+              background-position: center;
+              height: 100%;
+            "
+            tabindex="0"
+          >
+            <h2
+              class="mb-4"
+              style="
+                color: #81140d;
+                text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
+                font-family: 'Gochi Hand', cursive;
+                font-size: 50px;
+                font-style: normal;
+                font-weight: 900; /* Font weight */
+                line-height: normal;
+              "
+            >
+              OUR FOOD
+            </h2>
+            <p class="mb-6" style="font-size: 20px">
+              Inspired by Cambodia, Thailand, Vietnam and China, we serve the
+              same beloved home-cooked dishes.
+            </p>
+            <button
+              style="
+                background: #81140d;
+                color: #ffffff;
+                font-family: 'Gotham', sans-serif;
+                font-style: normal;
+                font-size: 22px;
+                line-height: normal;
+                text-align: center;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 20px;
+                box-shadow: 0px 4px 4px 4px #000;
+                cursor: pointer;
+                transition: all 0.3s ease;
+              "
+              onmouseover="this.style.background='#e3d000'; this.style.color='black';"
+              onmouseout="this.style.background='#81140d'; this.style.color='white';"
+              class="active:scale-95"
+            >
+              VIEW MENU
+            </button>
+          </div>
+          <!-- Image Card -->
+          <div
+            class="flex items-center justify-center"
+            tabindex="0"
+            style="
+              border-top-right-radius: 20px; /* Round top-right corner */
+              border-bottom-right-radius: 20px; /* Round bottom-right corner */
+            "
+          >
+            <img
+              src="assets/square_food.png"
+              class="card card-bottom shadow-lg w-full h-full object-cover"
+              style="height: 100%"
+              alt="Image of a variety of East Asian dishes."
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Centered Apsara Logo -->
+      <div class="flex justify-center">
+        <img
+          src="assets/apsara_logo_2.png"
+          alt="Apsara Logo"
+          class="h-48"
+          tabindex="0"
+        />
+      </div>
+
+      <!-- Two Cards Section 2 -->
+      <div class="flex justify-center my-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 w-3/4">
+          <!-- Image Card -->
+          <div class="flex items-center justify-center" tabindex="0">
+            <img
+              src="assets/apsara_dance.png"
+              class="card card-top shadow-lg w-full h-full object-cover"
+              style="height: 100%"
+              alt="Image of a traditional Apsara dance."
+            />
+          </div>
+          <!-- Text Card -->
+          <div
+            class="card card-bottom bg-white p-7 space-y-6 shadow-lg flex flex-col justify-center items-start"
+            style="
+              background-image: url('assets/stoneback.jpg');
+              background-size: cover;
+              background-position: center;
+              height: 100%;
+              margin: 0;
+            "
+            tabindex="0"
+          >
+            <h2
+              class="mb-4"
+              style="
+                color: #81140d;
+                text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
+                font-family: 'Gochi Hand', cursive;
+                font-size: 50px;
+                font-style: normal;
+                font-weight: 900; /* Font weight */
+                line-height: normal;
+              "
+            >
+              OUR HERITAGE
+            </h2>
+            <p class="mb-6" style="font-size: 20px">
+              In Cambodian culture, an Apsara is a beautiful supernatural being
+              who performs the “Apsara Dance” exclusively for the King of
+              Cambodia.
+            </p>
+            <p class="mb-6" style="font-size: 20px">
+              While attending night school, Mrs. Thao Te noticed many in the
+              community were too busy to cook authentic Asian meals. For a small
+              fee, she began preparing home-cooked dinners, attracting curious
+              passersby eager to try her food. This demand led her to open
+              Apsara Asian Restaurant, where she initially served whatever she
+              had prepared that day. Through word of mouth, it became known for
+              its delicious, authentic cuisine and generous portions.
+            </p>
+            <button
+              style="
+                background: #81140d;
+                color: #ffffff;
+                font-family: 'Gotham', sans-serif;
+                font-style: normal;
+                font-size: 20px;
+                line-height: normal;
+                text-align: center;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 20px;
+                box-shadow: 0px 4px 4px 4px #000;
+                cursor: pointer;
+                transition: all 0.3s ease;
+              "
+              onmouseover="this.style.background='#e3d000'; this.style.color='black';"
+              onmouseout="this.style.background='#81140d'; this.style.color='white';"
+              class="active:scale-95"
+            >
+              READ MORE
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <style>
+        @media (max-width: 1030px) {
+        footer .email-signup,
+        footer .social-icons {
+            display: none; /* Hide the email signup button and social media icons */
+          }
+        }
+      @media (max-width: 775px) {
+        footer .footer-logo,
+        footer .email-signup,
+        footer .social-icons {
+          display: none;
+        }
+        
+
+        footer .container {
+          justify-content: center;
+        }
+      }
+    </style>
+    <footer class="p-6" style="background-color: #81140d; color: white">
+      <div class="container mx-auto flex justify-between items-center">
+        <!-- Logo -->
+        <div
+          class="flex items-center footer-logo"
+          aria-label="Apsara Logo"
+          tabindex="0"
+        >
+          <img
+            src="assets/apsara_logo.png"
+            alt="Apsara Logo"
+            class="h-16 mr-6"
+          />
+        </div>
+
+        <!-- Tel and Hours -->
+        <div
+          class="text-left mr-6"
+          tabindex="0"
+          aria-label="Our phone number is 401-785-1490. We operate Sunday to Thursday, 10 AM to 9:30 PM and Friday and Saturday, 10 AM to 10 PM. We are closed on Tuesdays."
+        >
+          <p>
+            <span style="color: #f0e12f">Tel:</span>
+            <a
+              href="tel:4017851490"
+              style="color: white; text-decoration: underline"
+              class="hover:text-yellow-400"
+              aria-label="Link to call Apsara Asian Restaurant."
+            >
+              401-785-1490
+            </a>
+          </p>
+          <p><span style="color: #f0e12f">Sun-Thurs:</span> 10am-9:30pm</p>
+          <p><span style="color: #f0e12f">Fri & Sat:</span> 10am-10pm</p>
+          <p style="color: #f0e12f">CLOSED TUESDAYS</p>
+        </div>
+
+        <!-- Location -->
+        <div
+          class="text-left"
+          tabindex="0"
+          aria-label="Apsara Asian Restaurant is located at 716 Public St., Providence, RI 02907."
+        >
+          <p style="color: #f0e12f; font-weight: bold">LOCATION</p>
+          <p>
+            <a
+              href="https://www.google.com/maps?q=716+Public+St,+Providence,+RI+02907"
+              target="_blank"
+              style="color: white; text-decoration: underline"
+              class="hover:text-yellow-400"
+              aria-label="Link to Google Maps for Apsara Asian Restaurant."
+            >
+              716 Public St.<br />Providence, RI 02907
+            </a>
+          </p>
+        </div>
+
+        <!-- Email Signup Button -->
+        <div class="mr-6 email-signup">
+          <button
+            style="
+              background: #e3d000;
+              color: #000;
+              font-family: 'Gotham', sans-serif;
+              font-style: normal;
+              font-size: 18px;
+              line-height: normal;
+              text-align: center;
+              padding: 10px 20px;
+              border: none;
+              border-radius: 20px;
+              box-shadow: 0px 4px 4px 4px #000;
+              cursor: pointer;
+              transition: all 0.3s ease;
+            "
+            onmouseover="this.style.background='white'; this.style.color='#81140d';"
+            onmouseout="this.style.background='#e3d000'; this.style.color='black';"
+            class="active:scale-95"
+          >
+            EMAIL SIGNUP
+          </button>
+        </div>
+
+        <!-- Social Media Icons -->
+        <div class="flex space-x-4 social-icons">
+          <a href="#" class="group">
+            <img
+              src="assets/facebook_icon.png"
+              alt="Visit our Facebook page."
+              class="h-8 w-8 object-contain transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
+            />
+          </a>
+          <a href="#" class="group">
+            <img
+              src="assets/google_plus_icon.png"
+              alt="Visit our Google+ page."
+              class="h-8 w-8 object-contain transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
+            />
+          </a>
+          <a href="#" class="group">
+            <img
+              src="assets/yelp_icon.png"
+              alt="Visit our Yelp page."
+              class="h-8 w-8 object-contain transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
+            />
+          </a>
+          <a href="#" class="group">
+            <img
+              src="assets/tripadvisor_icon.png"
+              alt="Visit our TripAdvisor page."
+              class="h-8 w-8 object-contain transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
+            />
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Smooth scroll to the top of the page on refresh
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          });
+        }, 100);
+      });
+    </script>
+  </body>
+</html>
