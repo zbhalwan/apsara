@@ -100,6 +100,27 @@
         color: #ffffff;
       }
 
+      #mobile-menu {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      @media (max-width: 805px) {
+        #mobile-menu {
+          display: flex;
+        }
+        #mobile-menu a {
+          margin: 50px 0;
+        }
+        #mobile-menu .social-icons {
+      gap: 2rem; /* Add spacing between icons */
+    }
+        
+      }
+
+
       #menu-btn img {
         transition: filter 0.5s ease;
       }
@@ -201,36 +222,38 @@
           </button>
         </div>
 
-        <div class="flex justify-center space-x-8">
-            <a href="#" class="group">
-              <img
-                src="assets/facebook_icon.png"
-                alt="Visit our Facebook page."
-                class="h-8 w-8 object-contain transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
-              />
-            </a>
-            <a href="#" class="group">
-              <img
-                src="assets/google_plus_icon.png"
-                alt="Visit our Google+ page."
-                class="h-8 w-8 object-contain transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
-              />
-            </a>
-            <a href="#" class="group">
-              <img
-                src="assets/yelp_icon.png"
-                alt="Visit our Yelp page."
-                class="h-8 w-8 object-contain transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
-              />
-            </a>
-            <a href="#" class="group">
-              <img
-                src="assets/tripadvisor_icon.png"
-                alt="Visit our TripAdvisor page."
-                class="h-8 w-8 object-contain transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
-              />
-            </a>
-          </div>
+        <!-- Social Media Icons -->
+  <div class="flex justify-center space-x-8 social-icons">
+    <a href="#" class="group">
+      <img
+        src="assets/facebook_icon.png"
+        alt="Visit our Facebook page."
+        class="h-8 w-8 object-contain transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
+      />
+    </a>
+    <a href="#" class="group">
+      <img
+        src="assets/google_plus_icon.png"
+        alt="Visit our Google+ page."
+        class="h-8 w-8 object-contain transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
+      />
+    </a>
+    <a href="#" class="group">
+      <img
+        src="assets/yelp_icon.png"
+        alt="Visit our Yelp page."
+        class="h-8 w-8 object-contain transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
+      />
+    </a>
+    <a href="#" class="group">
+      <img
+        src="assets/tripadvisor_icon.png"
+        alt="Visit our TripAdvisor page."
+        class="h-8 w-8 object-contain transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:filter group-hover:brightness-0 group-hover:invert"
+      />
+    </a>
+  </div>
+      </div>
     </nav>
 
     <!-- JavaScript for hamburger menu -->
@@ -668,19 +691,18 @@
 
     <!-- Footer -->
     <style>
-        @media (max-width: 1030px) {
+      @media (max-width: 1030px) {
         footer .email-signup,
-        footer .social-icons {
-            display: none; /* Hide the email signup button and social media icons */
-          }
+        footer .social-icons-footer {
+          display: none; /* Hide the email signup button and social media icons */
         }
+      }
       @media (max-width: 775px) {
         footer .footer-logo,
         footer .email-signup,
-        footer .social-icons {
+        footer .social-icons-footer {
           display: none;
         }
-        
 
         footer .container {
           justify-content: center;
@@ -771,7 +793,7 @@
         </div>
 
         <!-- Social Media Icons -->
-        <div class="flex space-x-4 social-icons">
+        <div class="flex space-x-4 social-icons-footer">
           <a href="#" class="group">
             <img
               src="assets/facebook_icon.png"
